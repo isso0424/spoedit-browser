@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path"
+
+	"github.com/go-yaml/yaml"
 )
 
 func input() string {
@@ -37,10 +39,11 @@ func createIdsFile() error {
 		return err
 	}
 
-	_, err = os.Create(path.Join(dir, configDirName, idsFile))
+	file, err := os.Create(path.Join(dir, configDirName, idsFile))
 	if err != nil {
 		return err
 	}
+	defer file.Close()
 
 	ids, err := loadConfigFile()
 	if err != nil {
@@ -49,7 +52,15 @@ func createIdsFile() error {
 
 
 	if ids.Client == "" || ids.Secret == "" {
-		_, err = createIdsStruct()
+		ids, err := createIdsStruct()
+		if err != nil {
+			return err
+		}
+		buf, err := yaml.Marshal(ids)
+		if err != nil {
+			return err
+		}
+		_, err = file.Write(buf)
 		return err
 	}
 

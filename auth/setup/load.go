@@ -17,10 +17,10 @@ func loadConfigFile() (*idStruct, error) {
 		return nil, err
 	}
 
-	ids := make([]idStruct, 128)
-	err = yaml.Unmarshal(fileBuffer, ids)
+	ids := idStruct{}
+	err = yaml.Unmarshal(fileBuffer, &ids)
 
-	return &ids[0], err
+	return &ids, err
 }
 
 func getClientID() (*string, *string, error) {

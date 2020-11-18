@@ -25,7 +25,7 @@ func Setup() (clientID *string, secretID *string, err error) {
 		}
 	}
 
-	if (!existDir || existIdsFile) {
+	if (!existDir || !existIdsFile) {
 		// TODO: create ids.yaml in here
 	}
 

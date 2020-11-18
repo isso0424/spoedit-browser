@@ -2,12 +2,10 @@ package oauth
 
 import (
 	"os"
-	"path/filepath"
 )
 
-func saveRefreshToken(configDir *string, token *string) error {
-	saveFilePath := filepath.Clean(*configDir + "/" + tokenFile)
-	file, err := os.Create(saveFilePath)
+func saveRefreshToken(tokenpath *string, token *string) error {
+	file, err := os.Create(*tokenpath)
 	if err != nil {
 		return err
 	}

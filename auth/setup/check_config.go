@@ -39,3 +39,12 @@ func existConfigDir() (bool, error) {
 
 	return exist(path.Join(configDir, configDirName)), nil
 }
+
+func existTokenFile() (bool, error) {
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		return false, err
+	}
+
+	return exist(path.Join(configDir, configDirName, )), nil
+}

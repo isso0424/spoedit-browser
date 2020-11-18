@@ -11,10 +11,10 @@ func main() {
 		panic(err.Error())
 	}
 
-	dir, err := setup.GetConfigDir()
+	tokenPath, err := setup.GetTokenPath()
 	if err != nil {
 		panic(err.Error())
 	}
 
-	oauth.LaunchOauthServer(*dir, clientID, secretID)
+	oauth.LaunchOauthServer(*tokenPath, clientID, secretID)
 }

@@ -11,7 +11,7 @@ func exist(filename string) bool {
 	return err == nil
 }
 
-func existConfigFile() (bool, error) {
+func existIDsConfigFile() (bool, error) {
 	configDir, err := os.UserConfigDir()
 	if err != nil {
 		return false, err

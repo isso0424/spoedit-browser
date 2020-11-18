@@ -20,14 +20,17 @@ var (
 )
 
 const (
-	idFile = "ids"
+	idsFile = "id.yaml"
 	tokenFile = "token"
 )
 
 func launchOauthServer(configDir string) error {
-	clientID, secretID := getClientID()
+	clientID, secretID, err := getClientID()
+	if err != nil {
+		return err
+	}
 
-	auth.SetAuthInfo(clientID, secretID)
+	auth.SetAuthInfo(*clientID, *secretID)
 
 	http.HandleFunc("/callback", handler)
 	http.HandleFunc("/", defaultRoute)

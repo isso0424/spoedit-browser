@@ -24,7 +24,7 @@ const (
 	tokenFile = "token"
 )
 
-func launchOauthServer(configDir string, clientID *string, secretID *string) error {
+func LaunchOauthServer(configDir string, clientID *string, secretID *string) error {
 	auth.SetAuthInfo(*clientID, *secretID)
 
 	http.HandleFunc("/callback", handler)

@@ -1,6 +1,11 @@
 package main
-import "fmt"
+
+import (
+	"fmt"
+	"isso0424/spoedit-auth/setup"
+)
 
 func main() {
-	fmt.Println("Fuck you noobest")
+	_, _, err := setup.Setup()
+	fmt.Println(err)
 }

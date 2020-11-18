@@ -16,8 +16,19 @@ func existIDsConfigFile() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+	if !exist(path.Join(configDir, configDirName, idsFile)) {
+		return false, nil
+	}
 
-	return exist(path.Join(configDir, configDirName, idsFile)), nil
+	ids, err := loadConfigFile()
+	if err != nil {
+		return false, err
+	}
+	if ids.Client == "" || ids.Secret == "" {
+		return false, nil
+	}
+
+	return true, nil
 }
 
 func existConfigDir() (bool, error) {

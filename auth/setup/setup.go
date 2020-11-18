@@ -25,10 +25,6 @@ func Setup() (clientID *string, secretID *string, err error) {
 		}
 	}
 
-	if (!existDir || !existIdsFile) {
-		// TODO: create ids.yaml in here
-	}
-
 	ids, err := loadConfigFile()
 	clientID = &ids.Client
 	secretID = &ids.Secret

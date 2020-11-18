@@ -41,12 +41,16 @@ func createIdsFile() error {
 	if err != nil {
 		return err
 	}
+
 	ids, err := loadConfigFile()
 	if err != nil {
 		return err
 	}
 
+
 	if ids.Client == "" || ids.Secret == "" {
+		_, err = createIdsStruct()
+		return err
 	}
 
 	return err

@@ -1,8 +1,10 @@
 package oauth
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/zmb3/spotify"
 )
@@ -26,12 +28,13 @@ const (
 
 func LaunchOauthServer(tokenPath string, clientID *string, secretID *string) error {
 	auth.SetAuthInfo(*clientID, *secretID)
+	server := &http.Server{ Addr: "8888" }
 
 	http.HandleFunc("/callback", handler)
 	http.HandleFunc("/", defaultRoute)
 
 	go func() {
-		err := http.ListenAndServe(":8888", nil)
+		err := server.ListenAndServe()
 		fmt.Println("Error: ", err)
 	}()
 
@@ -40,8 +43,15 @@ func LaunchOauthServer(tokenPath string, clientID *string, secretID *string) err
 
 	client := <-ch
 
+
 	token, err := client.Token()
 	if err != nil {
+		return err
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	if err := server.Shutdown(ctx); err != nil {
 		return err
 	}
 

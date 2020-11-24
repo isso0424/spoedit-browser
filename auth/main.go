@@ -17,7 +17,10 @@ func main() {
 		panic(err.Error())
 	}
 
-	oauth.LaunchOauthServer(*tokenPath, clientID, secretID)
+	err = oauth.LaunchOauthServer(*tokenPath, clientID, secretID)
+	if err != nil {
+		panic(err.Error())
+	}
 
 	err = refresher.LaunchRefreshServer(*tokenPath)
 	if err != nil {

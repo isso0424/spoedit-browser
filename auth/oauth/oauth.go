@@ -26,7 +26,12 @@ const (
 	tokenFile = "token"
 )
 
-func LaunchOauthServer(tokenPath string, clientID *string, secretID *string) error {
+func LaunchOauthServer(tokenPath string, clientID *string, secretID *string) (err error) {
+	if checkFileExist(tokenPath) {
+		fmt.Println("Token is already exist.")
+		return
+	}
+
 	auth.SetAuthInfo(*clientID, *secretID)
 	server := &http.Server{ Addr: ":8888" }
 
@@ -46,13 +51,13 @@ func LaunchOauthServer(tokenPath string, clientID *string, secretID *string) err
 
 	token, err := client.Token()
 	if err != nil {
-		return err
+		return
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	if err := server.Shutdown(ctx); err != nil {
-		return err
+	if err = server.Shutdown(ctx); err != nil {
+		return
 	}
 
 	return saveRefreshToken(&tokenPath, &token.RefreshToken)

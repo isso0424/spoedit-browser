@@ -1,6 +1,13 @@
 package refresher
 
-func loadRefreshToken() (*string, error) {
-	// TODO: create token file loader
-	return nil, nil
+import "io/ioutil"
+
+func loadRefreshToken() (err error) {
+	fileBuffer, err := ioutil.ReadFile(tokenPath)
+	if err != nil {
+		return
+	}
+
+	token = string(fileBuffer)
+	return
 }

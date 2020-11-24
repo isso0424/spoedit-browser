@@ -28,7 +28,7 @@ const (
 
 func LaunchOauthServer(tokenPath string, clientID *string, secretID *string) error {
 	auth.SetAuthInfo(*clientID, *secretID)
-	server := &http.Server{ Addr: "8888" }
+	server := &http.Server{ Addr: ":8888" }
 
 	http.HandleFunc("/callback", handler)
 	http.HandleFunc("/", defaultRoute)

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"os/signal"
 	"time"
 )
 
@@ -28,8 +27,6 @@ func LaunchRefreshServer(tokenPlace string) (err error) {
 		err := server.ListenAndServe()
 		fmt.Println("Error: ", err)
 	}()
-
-	signal.Notify(ch)
 
 	<-ch
 

@@ -20,7 +20,7 @@ func createConfigDir() error {
 	if err != nil {
 		return err
 	}
-	return os.Mkdir(path.Join(dir, configDirName), 0666)
+	return os.Mkdir(path.Join(dir, configDirName), 0777)
 }
 
 func createIdsStruct() (ids idStruct, err error) {

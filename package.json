@@ -4,7 +4,13 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
     "dayjs": "^1.9.6",
+    "eslint": "^7.14.0",
+    "eslint-plugin-react": "^7.21.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
@@ -19,7 +25,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "fix": "run-s fix:eslint fix:prettier",
+    "lint": "run-s lint:eslint lint:prettier",
+    "lint:eslint": "eslint src/**.ts* src/**/**.ts*",
+    "lint:prettier": "prettier src/**.ts src/**/**.ts*",
+    "fix:eslint": "yarn lint:eslint --fix",
+    "fix:prettier": "yarn lint:prettier --write"
   },
   "eslintConfig": {
     "extends": [

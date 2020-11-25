@@ -1,4 +1,4 @@
-import {AccessToken} from "../domain/token";
+import { AccessToken } from "../domain/token";
 
 export interface Verifier {
   getAccessToken(): AccessToken;

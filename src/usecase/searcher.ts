@@ -1,7 +1,7 @@
 import { Track } from "../domain/track";
 
-export interface Searcher {
-  searchTrack(keyword: string): Array<Track>;
+export interface ISearcher {
+  searchTrack(keyword: string): Promise<Array<Track>>;
 
-  searchAlbum(keyword: string): Array<Array<Track>>;
+  searchAlbum(keyword: string): Promise<Array<Array<Track>>>;
 }

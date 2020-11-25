@@ -3,34 +3,34 @@ import { Track } from "../domain/track";
 import { IPlaylistCreator } from "../usecase/creator";
 import { IPlaylistDeleter } from "../usecase/deleter";
 import { IPlaylistEditor } from "../usecase/editor";
-import { Searcher } from "../usecase/searcher";
-import { Verifier } from "../usecase/verifier";
+import { ISearcher } from "../usecase/searcher";
+import { IVerifier } from "../usecase/verifier";
 
 export interface IAPIClient {
-  createPlaylist(name: string): Playlist;
+  createPlaylist(name: string): Promise<Playlist>;
 
-  fetchPlaylist(): Array<Playlist>;
+  fetchPlaylist(): Promise<Array<Playlist>>;
 
-  deletePlaylist(playlist: Playlist): Playlist;
+  deletePlaylist(playlist: Playlist): Promise<Playlist>;
 
-  addTrack(track: Track): Playlist;
+  addTrack(track: Track): Promise<Playlist>;
 
-  deleteTrack(track: Track): Playlist;
+  deleteTrack(track: Track): Promise<Playlist>;
 
-  renamePlaylist(name: string): Playlist;
+  renamePlaylist(name: string): Promise<Playlist>;
 
-  searchTrack(keyword: string): Array<Track>;
+  searchTrack(keyword: string): Promise<Array<Track>>;
 
-  searchAlbum(keyword: string): Array<Array<Track>>;
+  searchAlbum(keyword: string): Promise<Array<Array<Track>>>;
 }
 
 export class APIClient implements IAPIClient {
   constructor(
-    verifier: Verifier,
+    verifier: IVerifier,
     creator: IPlaylistCreator,
     editor: IPlaylistEditor,
     deleter: IPlaylistDeleter,
-    searcher: Searcher
+    searcher: ISearcher
   ) {
     this.verifier = verifier;
     this.creator = creator;
@@ -39,7 +39,7 @@ export class APIClient implements IAPIClient {
     this.searcher = searcher;
   }
 
-  verifier: Verifier;
+  verifier: IVerifier;
 
   creator: IPlaylistCreator;
 
@@ -47,37 +47,37 @@ export class APIClient implements IAPIClient {
 
   deleter: IPlaylistDeleter;
 
-  searcher: Searcher;
+  searcher: ISearcher;
 
-  fetchPlaylist(): Array<Playlist> {
+  async fetchPlaylist(): Promise<Array<Playlist>> {
     return this.creator.fetch();
   }
 
-  createPlaylist(name: string): Playlist {
+  async createPlaylist(name: string): Promise<Playlist> {
     return this.creator.create(name);
   }
 
-  deletePlaylist(playlist: Playlist): Playlist {
+  async deletePlaylist(playlist: Playlist): Promise<Playlist> {
     return this.deleter.deletePlaylist(playlist);
   }
 
-  addTrack(track: Track): Playlist {
+  async addTrack(track: Track): Promise<Playlist> {
     return this.editor.addTrack(track);
   }
 
-  deleteTrack(track: Track): Playlist {
+  async deleteTrack(track: Track): Promise<Playlist> {
     return this.editor.deleteTrack(track);
   }
 
-  renamePlaylist(name: string): Playlist {
+  async renamePlaylist(name: string): Promise<Playlist> {
     return this.editor.renamePlaylist(name);
   }
 
-  searchTrack(keyword: string): Array<Track> {
+  async searchTrack(keyword: string): Promise<Array<Track>> {
     return this.searcher.searchTrack(keyword);
   }
 
-  searchAlbum(keyword: string): Array<Array<Track>> {
+  async searchAlbum(keyword: string): Promise<Array<Array<Track>>> {
     return this.searcher.searchAlbum(keyword);
   }
 }

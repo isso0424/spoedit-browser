@@ -1,7 +1,7 @@
 import { Playlist } from "../domain/playlist";
 
 export interface IPlaylistCreator {
-  fetch(): Array<Playlist>;
+  fetch(): Promise<Array<Playlist>>;
 
-  create(name: string): Playlist;
+  create(name: string): Promise<Playlist>;
 }

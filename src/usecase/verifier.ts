@@ -1,5 +1,5 @@
 import { AccessToken } from "../domain/token";
 
-export interface Verifier {
-  getAccessToken(): AccessToken;
+export interface IVerifier {
+  getAccessToken(): Promise<AccessToken>;
 }

@@ -1,4 +1,4 @@
-import { Track } from "./truck";
+import { Track } from "./track";
 
 export interface Playlist {
   id: string;

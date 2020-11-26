@@ -23,7 +23,7 @@ func createConfigDir() error {
 	return os.Mkdir(path.Join(dir, configDirName), 0777)
 }
 
-func createIdsStruct() (ids idStruct, err error) {
+func createIdsStruct() (ids IDStruct, err error) {
 	fmt.Println("Please input client ID")
 	ids.Client = input()
 

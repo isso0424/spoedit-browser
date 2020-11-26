@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 )
 
-func loadConfigFile() (*idStruct, error) {
+func loadConfigFile() (*IDStruct, error) {
 	configDir, err := os.UserConfigDir()
 	if err != nil {
 		return nil, err
@@ -17,13 +17,13 @@ func loadConfigFile() (*idStruct, error) {
 		return nil, err
 	}
 
-	ids := idStruct{}
+	ids := IDStruct{}
 	err = yaml.Unmarshal(fileBuffer, &ids)
 
 	return &ids, err
 }
 
-func getClientID() (*string, *string, error) {
+func GetClientID() (*string, *string, error) {
 	ids, err := loadConfigFile()
 	if err != nil {
 		return nil, nil, err

@@ -6,22 +6,33 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"isso0424/spoedit-auth/setup"
 )
 
 var (
 	ch = make(chan os.Signal, 1)
 	token string
 	tokenPath string
+	ids setup.IDStruct
 )
 
 func LaunchRefreshServer(tokenPlace string) (err error) {
+	clientID, secretID, err := setup.GetClientID()
+	if err != nil {
+		return
+	}
+	ids = setup.IDStruct{
+		Client: *clientID,
+		Secret: *secretID,
+	}
+
 	tokenPath = tokenPlace
 	err = loadRefreshToken()
 	if err != nil {
 		return
 	}
 	server := &http.Server { Addr: ":8000" }
-	http.HandleFunc("/refresh", getRefreshToken)
+	http.HandleFunc("/token", getAccessToken)
 
 	go func() {
 		err := server.ListenAndServe()

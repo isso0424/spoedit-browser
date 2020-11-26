@@ -1,5 +1,5 @@
 package setup
-type idStruct struct {
+type IDStruct struct {
 	Client string `yaml:"clientID"`
 	Secret string `yaml:"secretID"`
 }

@@ -23,11 +23,28 @@ export class Requester {
     queries: Record<string, string>,
     body: Record<string, unknown>,
     headers: Record<string, unknown>
-  ): Promise<Record<string, string>> {
+  ): Promise<Record<string, unknown>> {
     const urlForEndpoint = baseURL + endpoint;
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
     const response = await axios.post(requestURL, body, { headers });
+    if (response.status >= 200 && response.status < 300) {
+      throw "Request is failed with status code " + response.status;
+    }
+
+    return response.data;
+  }
+
+  async put(
+    endpoint: string,
+    queries: Record<string, string>,
+    body: Record<string, unknown>,
+    headers: Record<string, unknown>
+  ): Promise<Record<string, unknown>> {
+    const urlForEndpoint = baseURL + endpoint;
+    const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
+
+    const response = await axios.put(requestURL, body, { headers });
     if (response.status >= 200 && response.status < 300) {
       throw "Request is failed with status code " + response.status;
     }

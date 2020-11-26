@@ -5,11 +5,12 @@ export class Requester {
   async getData(
     endpoint: string,
     queries: Record<string, string>,
+    headers: Record<string, unknown>
   ): Promise<Record<string, unknown>> {
     const urlForEndpoint = baseURL + endpoint;
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
-    const response = await axios.get(requestURL);
+    const response = await axios.get(requestURL, { headers });
     if (response.status >= 200 && response.status < 300) {
       throw "Request is failed with status code " + response.status;
     }

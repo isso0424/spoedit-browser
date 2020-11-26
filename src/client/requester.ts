@@ -16,6 +16,23 @@ export class Requester {
 
     return response.data;
   }
+
+  async post(
+    endpoint: string,
+    queries: Record<string, string>,
+    body: Record<string, unknown>,
+    headers: Record<string, unknown>
+  ): Promise<Record<string, string>> {
+    const urlForEndpoint = baseURL + endpoint;
+    const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
+
+    const response = await axios.post(requestURL, body, { headers });
+    if (response.status >= 200 && response.status < 300) {
+      throw "Request is failed with status code " + response.status;
+    }
+
+    return response.data;
+  }
   
   private static embedQueriesToURL(url: string, queries: Record<string, string>): string {
     if (Object.entries(queries).length == 0)

@@ -51,6 +51,23 @@ export class Requester {
 
     return response.data;
   }
+
+  async delete(
+    endpoint: string,
+    queries: Record<string, string>,
+    body: Record<string, unknown>,
+    headers: Record<string, unknown>
+  ): Promise<Record<string, unknown>> {
+    const urlForEndpoint = baseURL + endpoint;
+    const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
+
+    const response = await axios.delete(requestURL, { headers, data: body });
+    if (response.status >= 200 && response.status < 300) {
+      throw "Request is failed with status code " + response.status;
+    }
+
+    return response.data;
+  }
   
   private static embedQueriesToURL(url: string, queries: Record<string, string>): string {
     if (Object.entries(queries).length == 0)

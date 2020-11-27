@@ -32,7 +32,8 @@ func LaunchRefreshServer(tokenPlace string) (err error) {
 		return
 	}
 	server := &http.Server { Addr: ":8000" }
-	http.HandleFunc("/token", getAccessToken)
+	http.HandleFunc("/token", getAccessTokenHandler)
+	http.HandleFunc("/client_id", getClientIDHandler)
 
 	go func() {
 		err := server.ListenAndServe()

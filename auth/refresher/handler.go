@@ -12,7 +12,7 @@ import (
 
 const tokenRefreshURL = "https://accounts.spotify.com/api/token"
 
-func getAccessToken(writer http.ResponseWriter, request *http.Request) {
+func getAccessTokenHandler(writer http.ResponseWriter, request *http.Request) {
 	body := url.Values{}
 	body.Set("grant_type", "refresh_token")
 	body.Set("refresh_token", token)
@@ -60,5 +60,18 @@ func getAccessToken(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	writer.WriteHeader(http.StatusOK)
+}
+
+func getClientIDHandler(writer http.ResponseWriter, request *http.Request) {
+	buffer := []byte(ids.Client)
+
+	_, err := writer.Write(buffer)
+	if err != nil {
+		fmt.Println(err)
+		writer.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
 	writer.WriteHeader(http.StatusOK)
 }

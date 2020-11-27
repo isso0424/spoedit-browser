@@ -2,8 +2,8 @@ package main
 
 import (
 	"isso0424/spoedit-auth/oauth"
-	"isso0424/spoedit-auth/setup"
 	"isso0424/spoedit-auth/refresher"
+	"isso0424/spoedit-auth/setup"
 )
 
 func main() {

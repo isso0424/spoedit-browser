@@ -1,5 +1,5 @@
 import React from "react";
-import {PlaylistCreator} from "../client/playlist/creator";
+import { PlaylistCreator } from "../client/playlist/creator";
 import "./App.css";
 
 function App() {

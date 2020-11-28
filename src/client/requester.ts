@@ -22,7 +22,7 @@ export class Requester {
     endpoint: string,
     queries?: Record<string, string>,
     body?: Record<string, unknown>,
-    headers?: Record<string, unknown>,
+    headers?: Record<string, unknown>
   ): Promise<Record<string, unknown>> {
     const urlForEndpoint = baseURL + endpoint;
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
@@ -68,15 +68,17 @@ export class Requester {
 
     return response.data;
   }
-  
-  private static embedQueriesToURL(url: string, queries?: Record<string, string>): string {
-    if (queries == null || Object.entries(queries).length == 0)
-      return url
-    
+
+  private static embedQueriesToURL(
+    url: string,
+    queries?: Record<string, string>
+  ): string {
+    if (queries == null || Object.entries(queries).length == 0) return url;
+
     Object.entries(queries).forEach(([key, value], index) => {
       url += `${index == 0 ? "?" : "&"}${key}=${value}`;
     });
 
-    return url
+    return url;
   }
 }

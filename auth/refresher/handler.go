@@ -5,9 +5,13 @@ import (
 	"net/http"
 )
 
-const tokenRefreshURL = "https://accounts.spotify.com/api/token"
+const (
+	tokenRefreshURL = "https://accounts.spotify.com/api/token"
+	accessControlAllowOrigin = "*"
+)
 
 func getAccessTokenHandler(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Add("Access-Control-Allow-Origin", accessControlAllowOrigin)
 	accessToken, err := getAccessToken()
 	if err != nil {
 		log.Println(err)
@@ -28,6 +32,7 @@ func getAccessTokenHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func getClientIDHandler(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Add("Access-Control-Allow-Origin", accessControlAllowOrigin)
 	buffer := []byte(ids.Client)
 
 	_, err := writer.Write(buffer)

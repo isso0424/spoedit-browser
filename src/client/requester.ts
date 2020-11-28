@@ -11,8 +11,8 @@ export class Requester {
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
     const response = await axios.get(requestURL, { headers });
-    if (response.status >= 200 && response.status < 300) {
-      throw "Request is failed with status code " + response.status;
+    if (response.status < 200 || response.status >= 300) {
+      throw "Error occurred in get token with status code " + response.status;
     }
 
     return response.data;
@@ -28,8 +28,8 @@ export class Requester {
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
     const response = await axios.post(requestURL, body, { headers });
-    if (response.status >= 200 && response.status < 300) {
-      throw "Request is failed with status code " + response.status;
+    if (response.status < 200 || response.status >= 300) {
+      throw "Error occurred in get token with status code " + response.status;
     }
 
     return response.data;
@@ -45,8 +45,8 @@ export class Requester {
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
     const response = await axios.put(requestURL, body, { headers });
-    if (response.status >= 200 && response.status < 300) {
-      throw "Request is failed with status code " + response.status;
+    if (response.status < 200 || response.status >= 300) {
+      throw "Error occurred in get token with status code " + response.status;
     }
 
     return response.data;
@@ -62,8 +62,8 @@ export class Requester {
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
     const response = await axios.delete(requestURL, { headers, data: body });
-    if (response.status >= 200 && response.status < 300) {
-      throw "Request is failed with status code " + response.status;
+    if (response.status < 200 || response.status >= 300) {
+      throw "Error occurred in get token with status code " + response.status;
     }
 
     return response.data;

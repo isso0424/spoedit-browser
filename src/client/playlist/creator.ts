@@ -2,9 +2,12 @@ import {Playlist} from "../../domain/playlist";
 import {Track} from "../../domain/track";
 import {IPlaylistCreator} from "../../usecase/creator";
 import {Requester} from "../requester";
+import {UserInfoGetter} from "../user/getter";
 import {Verifier} from "../verifier";
 
 const fetchPlaylistEndpoint = "/me/playlists";
+
+const createPlaylistEndpoint = "/users/id/playlists";
 
 export class PlaylistCreator implements IPlaylistCreator {
   private requester = new Requester();
@@ -60,6 +63,25 @@ export class PlaylistCreator implements IPlaylistCreator {
   }
 
   async create(name: string): Promise<Playlist> {
-    throw "";
+    const idGetter = new UserInfoGetter();
+    const id = await idGetter.getUserID();
+    const accessToken = await this.verifier.getAccessToken();
+    const endpoint = createPlaylistEndpoint.replace("id", id);
+    const response = await this.requester.post(
+      endpoint,
+      undefined,
+      { name },
+      {
+        Authorization: "Bearer " + accessToken.token,
+        "Content-Type": "application/json",
+      },
+    );
+
+    return {
+      tracks: [],
+      description: response["description"] as string,
+      id: response["id"] as string,
+      name: response["name"] as string,
+    };
   }
 }

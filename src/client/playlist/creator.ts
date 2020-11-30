@@ -1,18 +1,22 @@
 import {Playlist} from "../../domain/playlist";
 import {Track} from "../../domain/track";
 import {IPlaylistCreator} from "../../usecase/creator";
-import {Requester} from "../requester";
+import {IRequester} from "../../usecase/requester";
+import {IVerifier} from "../../usecase/verifier";
 import {UserInfoGetter} from "../user/getter";
-import {Verifier} from "../verifier";
 
 const fetchPlaylistEndpoint = "/me/playlists";
 
 const createPlaylistEndpoint = "/users/id/playlists";
 
 export class PlaylistCreator implements IPlaylistCreator {
-  private requester = new Requester();
+  constructor (requester: IRequester, verifier: IVerifier) {
+    this.requester = requester;
+    this.verifier = verifier;
+  }
+  private requester: IRequester;
   
-  private verifier = new Verifier();
+  private verifier: IVerifier;
 
   async fetch(): Promise<Array<Playlist>> {
     const accessToken = await this.verifier.getAccessToken();

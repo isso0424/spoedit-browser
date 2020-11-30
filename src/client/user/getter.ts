@@ -1,13 +1,18 @@
 import axios from "axios";
-import {Requester} from "../requester";
-import {Verifier} from "../verifier";
+import {IRequester} from "../../usecase/requester";
+import {IVerifier} from "../../usecase/verifier";
 
 const endPoint = "/me";
 
 export class UserInfoGetter {
-  verifier = new Verifier();
+  constructor(requester: IRequester, verifier: IVerifier) {
+    this.requester = requester;
+    this.verifier = verifier;
+  }
 
-  requester = new Requester();
+  private verifier: IVerifier;
+
+  private requester: IRequester;
 
   async getUserID(): Promise<string> {
     const accessToken = await this.verifier.getAccessToken();

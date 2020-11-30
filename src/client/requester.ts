@@ -1,7 +1,8 @@
 import axios from "axios";
+import {IRequester} from "../usecase/requester";
 const baseURL = "https://api.spotify.com/v1";
 
-export class Requester {
+export class Requester implements IRequester {
   async getData(
     endpoint: string,
     queries?: Record<string, string>,

@@ -5,7 +5,7 @@ import {IVerifier} from "../../usecase/verifier";
 
 const endpoint = "/search";
 
-const trackKey = "";
+const trackKey = "track";
 
 export class Searcher implements ISearcher {
   constructor(requester: IRequester, verifier: IVerifier) {
@@ -37,10 +37,10 @@ export class Searcher implements ISearcher {
     rawTracks.forEach((rawTrack) => {
       tracks.push({
         id: rawTrack["id"] as string,
-        name: rawTrack["track"] as string,
+        name: rawTrack["name"] as string,
         uri: rawTrack["uri"] as string,
         durationMs: rawTrack["duration_ms"] as number,
-        artistName: (rawTrack["artists"] as Record<string, unknown>)["name"] as string,
+        artistName: (rawTrack["artists"] as Array<Record<string, unknown>>)[0]["name"] as string,
         imageURL: (
           (rawTrack["album"] as Record<string, unknown>)["images"] as Array<Record<string, unknown>>
         )[0]["url"] as string,

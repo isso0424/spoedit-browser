@@ -19,9 +19,9 @@ export class UserInfoGetter {
     const response = await this.requester.getData(
       endPoint,
       {},
-      { Authorization: accessToken.token }
+      { Authorization: "Bearer " + accessToken.token }
     );
 
-    return (response.data as Record<string, unknown>)["id"] as string;
+    return (response as Record<string, unknown>)["id"] as string;
   }
 }

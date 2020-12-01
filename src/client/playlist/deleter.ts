@@ -3,7 +3,7 @@ import { IPlaylistDeleter } from "../../usecase/deleter";
 import { IRequester } from "../../usecase/requester";
 import { IVerifier } from "../../usecase/verifier";
 
-const endpointTemplate = "playlists/id/followers";
+const endpointTemplate = "/playlists/id/followers";
 
 export class PlaylistDeleter implements IPlaylistDeleter {
   constructor(verifier: IVerifier, requester: IRequester) {

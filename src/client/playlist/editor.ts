@@ -46,7 +46,7 @@ export class PlaylistEditor implements IPlaylistEditor {
         "Content-Type": "application/json",
       }
     );
-    const newTracks = playlist.tracks.filter(t => t.id != track.id);
+    const newTracks = playlist.tracks.filter((t) => t.id != track.id);
     playlist.tracks = newTracks;
 
     return playlist;

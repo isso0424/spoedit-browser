@@ -5,6 +5,7 @@ import { IPlaylistDeleter } from "../usecase/deleter";
 import { IPlaylistEditor } from "../usecase/editor";
 import { ISearcher } from "../usecase/searcher";
 import { IVerifier } from "../usecase/verifier";
+import { Album } from "../domain/album";
 
 export interface IAPIClient {
   createPlaylist(name: string): Promise<Playlist>;
@@ -21,7 +22,7 @@ export interface IAPIClient {
 
   searchTrack(keyword: string): Promise<Array<Track>>;
 
-  searchAlbum(keyword: string): Promise<Array<Array<Track>>>;
+  searchAlbum(keyword: string): Promise<Array<Album>>;
 }
 
 export class APIClient implements IAPIClient {
@@ -77,7 +78,7 @@ export class APIClient implements IAPIClient {
     return this.searcher.searchTrack(keyword);
   }
 
-  async searchAlbum(keyword: string): Promise<Array<Array<Track>>> {
+  async searchAlbum(keyword: string): Promise<Array<Album>> {
     return this.searcher.searchAlbum(keyword);
   }
 }

@@ -1,15 +1,15 @@
-import {Track} from "./track";
+import { Track } from "./track";
 
 export interface Album {
-   name: string;
+  name: string;
 
-   tracks: Array<Track>;
+  tracks: Array<Track>;
 
-   artistName: string;
+  artistName: string;
 
-   id: string;
+  id: string;
 
-   uri: string;
+  uri: string;
 
-   imageURL: string;
+  imageURL: string;
 }

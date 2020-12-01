@@ -22,9 +22,12 @@ export class PlaylistEditor implements IPlaylistEditor {
     const endpoint = editPlaylistItemEndpoint.replace("id", playlist.id);
     await this.requester.post(
       endpoint,
-      {},
+      undefined,
       { uris: [track.uri] },
-      { Authorization: "Bearer " + accessToken.token }
+      {
+        Authorization: "Bearer " + accessToken.token,
+        "Content-Type": "application/json",
+      }
     );
     playlist.tracks.push(track);
 
@@ -36,9 +39,12 @@ export class PlaylistEditor implements IPlaylistEditor {
     const endpoint = editPlaylistItemEndpoint.replace("id", playlist.id);
     await this.requester.delete(
       endpoint,
-      {},
+      undefined,
       { uris: [track.uri] },
-      { Authorization: "Bearer " + accessToken.token }
+      {
+        Authorization: "Bearer " + accessToken.token,
+        "Content-Type": "application/json",
+      }
     );
     const newTracks = playlist.tracks.filter(t => t.id != track.id);
     playlist.tracks = newTracks;
@@ -47,6 +53,19 @@ export class PlaylistEditor implements IPlaylistEditor {
   }
 
   async renamePlaylist(playlist: Playlist, name: string): Promise<Playlist> {
-    /* nothing*/
+    const accessToken = await this.verifier.getAccessToken();
+    const endpoint = editPlaylistEndpoint.replace("id", playlist.id);
+    await this.requester.put(
+      endpoint,
+      undefined,
+      { name },
+      {
+        Authorization: "Bearer " + accessToken.token,
+        "Content-Type": "application/json",
+      }
+    );
+
+    playlist.name = name;
+    return playlist;
   }
 }

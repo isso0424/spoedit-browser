@@ -2,12 +2,10 @@ import {Track} from "../../domain/track";
 import {IRequester} from "../../usecase/requester";
 import {ISearcher} from "../../usecase/searcher";
 import {IVerifier} from "../../usecase/verifier";
-import {Album} from "../../domain/album";
 
 const endpoint = "/search";
 
 const trackKey = "";
-const albumKey = "";
 
 export class Searcher implements ISearcher {
   constructor(requester: IRequester, verifier: IVerifier) {
@@ -50,9 +48,5 @@ export class Searcher implements ISearcher {
     });
 
     return tracks;
-  }
-
-  async searchAlbum(keyword: string): Promise<Array<Album>> {
-    /* nothing */
   }
 }

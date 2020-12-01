@@ -1,5 +1,5 @@
 import axios from "axios";
-import {IRequester} from "../usecase/requester";
+import { IRequester } from "../usecase/requester";
 const baseURL = "https://api.spotify.com/v1";
 
 export class Requester implements IRequester {

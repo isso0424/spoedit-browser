@@ -20,7 +20,7 @@ export class PlaylistEditor implements IPlaylistEditor {
   async addTrack(playlist: Playlist, track: Track): Promise<Playlist> {
     const accessToken = await this.verifier.getAccessToken();
     const endpoint = editPlaylistItemEndpoint.replace("id", playlist.id);
-    const response = await this.requester.post(
+    await this.requester.post(
       endpoint,
       {},
       { uris: [track.uri] },
@@ -31,7 +31,22 @@ export class PlaylistEditor implements IPlaylistEditor {
     return playlist;
   }
 
-  async deleteTrack(playlist: Playlist, track: Track): Promise<Playlist> {}
+  async deleteTrack(playlist: Playlist, track: Track): Promise<Playlist> {
+    const accessToken = await this.verifier.getAccessToken();
+    const endpoint = editPlaylistItemEndpoint.replace("id", playlist.id);
+    await this.requester.delete(
+      endpoint,
+      {},
+      { uris: [track.uri] },
+      { Authorization: "Bearer " + accessToken.token }
+    );
+    const newTracks = playlist.tracks.filter(t => t.id != track.id);
+    playlist.tracks = newTracks;
 
-  async renamePlaylist(playlist: Playlist, name: string): Promise<Playlist> {}
+    return playlist;
+  }
+
+  async renamePlaylist(playlist: Playlist, name: string): Promise<Playlist> {
+    /* nothing*/
+  }
 }

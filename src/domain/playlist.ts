@@ -5,4 +5,5 @@ export interface Playlist {
   name: string;
   description: string;
   tracks: Array<Track>;
+  uri: string;
 }

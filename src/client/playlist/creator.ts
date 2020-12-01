@@ -36,6 +36,7 @@ export class PlaylistCreator implements IPlaylistCreator {
         description: rawPlaylist["description"] as string,
         name: rawPlaylist["name"] as string,
         tracks,
+        uri: rawPlaylist["uri"] as string,
       });
     }
 
@@ -60,6 +61,7 @@ export class PlaylistCreator implements IPlaylistCreator {
         durationMs: track["duration_ms"] as number,
         imageURL: track["album"] as Record<string, unknown>["images"] as Array<Record<string, unknown>>[0]["url"] as string,
         artistName: track["artists"]as Array<Record<string, unknown>>[0]["name"] as string,
+        uri: track["uri"] as string
       });
     }
     
@@ -67,7 +69,7 @@ export class PlaylistCreator implements IPlaylistCreator {
   }
 
   async create(name: string): Promise<Playlist> {
-    const idGetter = new UserInfoGetter();
+    const idGetter = new UserInfoGetter(this.requester, this.verifier);
     const id = await idGetter.getUserID();
     const accessToken = await this.verifier.getAccessToken();
     const endpoint = createPlaylistEndpoint.replace("id", id);
@@ -86,6 +88,7 @@ export class PlaylistCreator implements IPlaylistCreator {
       description: response["description"] as string,
       id: response["id"] as string,
       name: response["name"] as string,
+      uri: response["uri"] as string,
     };
   }
 }

@@ -7,7 +7,7 @@ import {PlaylistCreator} from "../client/playlist/creator";
 import {PlaylistDeleter} from "../client/playlist/deleter";
 import {PlaylistEditor} from "../client/playlist/editor";
 import {Searcher} from "../client/playlist/searcher";
-import {Simulate} from "react-dom/test-utils";
+import {TopPage} from "./top_page";
 
 const requester = new Requester();
 const verifier = new Verifier();
@@ -26,7 +26,11 @@ const client = new APIClient(
 client.searchTrack("world.execute(me)").then(result => console.log(result));
 
 const App = (): JSX.Element => {
-  return <div className="App">Hello world</div>;
+  return (
+    <div className="App">
+      <TopPage client={client}/>
+    </div>
+  );
 }
 
 export default App;

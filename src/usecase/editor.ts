@@ -2,9 +2,9 @@ import { Playlist } from "../domain/playlist";
 import { Track } from "../domain//track";
 
 export interface IPlaylistEditor {
-  addTrack(track: Track): Promise<Playlist>;
+  addTrack(playlist: Playlist, track: Track): Promise<Playlist>;
 
-  deleteTrack(track: Track): Promise<Playlist>;
+  deleteTrack(playlist: Playlist, track: Track): Promise<Playlist>;
 
-  renamePlaylist(name: string): Promise<Playlist>;
+  renamePlaylist(playlist: Playlist, name: string): Promise<Playlist>;
 }

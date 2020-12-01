@@ -13,11 +13,11 @@ export interface IAPIClient {
 
   deletePlaylist(playlist: Playlist): Promise<Playlist>;
 
-  addTrack(track: Track): Promise<Playlist>;
+  addTrack(playlist: Playlist, track: Track): Promise<Playlist>;
 
-  deleteTrack(track: Track): Promise<Playlist>;
+  deleteTrack(playlist: Playlist, track: Track): Promise<Playlist>;
 
-  renamePlaylist(name: string): Promise<Playlist>;
+  renamePlaylist(playlist: Playlist, name: string): Promise<Playlist>;
 
   searchTrack(keyword: string): Promise<Array<Track>>;
 
@@ -61,16 +61,16 @@ export class APIClient implements IAPIClient {
     return this.deleter.deletePlaylist(playlist);
   }
 
-  async addTrack(track: Track): Promise<Playlist> {
-    return this.editor.addTrack(track);
+  async addTrack(playlist: Playlist, track: Track): Promise<Playlist> {
+    return this.editor.addTrack(playlist, track);
   }
 
-  async deleteTrack(track: Track): Promise<Playlist> {
-    return this.editor.deleteTrack(track);
+  async deleteTrack(playlist: Playlist, track: Track): Promise<Playlist> {
+    return this.editor.deleteTrack(playlist, track);
   }
 
-  async renamePlaylist(name: string): Promise<Playlist> {
-    return this.editor.renamePlaylist(name);
+  async renamePlaylist(playlist: Playlist, name: string): Promise<Playlist> {
+    return this.editor.renamePlaylist(playlist, name);
   }
 
   async searchTrack(keyword: string): Promise<Array<Track>> {

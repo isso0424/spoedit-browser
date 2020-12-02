@@ -5,11 +5,12 @@ export type TabName = "playlists" | "searcher";
 
 export interface State {
   playlists?: Array<Playlist>;
+  selectedPlaylist?: Playlist;
   selectedTracks?: Array<Track>;
   currentTab: TabName;
 }
 
-export type Action = updatePlaylists | selectTrack | clearSelected | unselectTrack | switchTabs;
+export type Action = updatePlaylists | selectTrack | clearSelected | unselectTrack | switchTabs | selectPlaylist;
 
 interface updatePlaylists {
   type: "updatePlaylists";
@@ -35,6 +36,11 @@ interface switchTabs {
   newTabName: TabName;
 }
 
+interface selectPlaylist {
+  type: "selectPlaylist";
+  playlist: Playlist;
+}
+
 export const reducer = (state: State, action: Action): State => {
   const prevTracks = state.selectedTracks ?? [];
   switch (action.type) {
@@ -58,11 +64,16 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         selectedTracks: prevTracks.filter(track => track.id != action.track.id),
-      }
+      };
     case "switchTabs":
       return {
         ...state,
         currentTab: action.newTabName,
-      }
+      };
+    case "selectPlaylist":
+      return {
+        ...state,
+        selectedPlaylist: action.playlist,
+      };
   }
 };

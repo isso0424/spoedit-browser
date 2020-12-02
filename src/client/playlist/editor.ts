@@ -1,8 +1,8 @@
-import { Playlist } from "../../domain/playlist";
-import { Track } from "../../domain/track";
-import { IPlaylistEditor } from "../../usecase/editor";
-import { IRequester } from "../../usecase/requester";
-import { IVerifier } from "../../usecase/verifier";
+import {Playlist} from "../../domain/playlist";
+import {Track} from "../../domain/track";
+import {IPlaylistEditor} from "../../usecase/editor";
+import {IRequester} from "../../usecase/requester";
+import {IVerifier} from "../../usecase/verifier";
 
 const editPlaylistEndpoint = "/playlists/id";
 const editPlaylistItemEndpoint = "/playlists/id/tracks";
@@ -23,7 +23,7 @@ export class PlaylistEditor implements IPlaylistEditor {
     await this.requester.post(
       endpoint,
       undefined,
-      { uris: [track.uri] },
+      {uris: [track.uri]},
       {
         Authorization: "Bearer " + accessToken.token,
         "Content-Type": "application/json",
@@ -40,14 +40,13 @@ export class PlaylistEditor implements IPlaylistEditor {
     await this.requester.delete(
       endpoint,
       undefined,
-      { uris: [track.uri] },
+      {uris: [track.uri]},
       {
         Authorization: "Bearer " + accessToken.token,
         "Content-Type": "application/json",
       }
     );
-    const newTracks = playlist.tracks.filter((t) => t.id != track.id);
-    playlist.tracks = newTracks;
+    playlist.tracks = playlist.tracks.filter((t) => t.id != track.id);
 
     return playlist;
   }
@@ -58,7 +57,7 @@ export class PlaylistEditor implements IPlaylistEditor {
     await this.requester.put(
       endpoint,
       undefined,
-      { name },
+      {name},
       {
         Authorization: "Bearer " + accessToken.token,
         "Content-Type": "application/json",

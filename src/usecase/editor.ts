@@ -1,5 +1,5 @@
-import { Playlist } from "../domain/playlist";
-import { Track } from "../domain//track";
+import {Playlist} from "../domain/playlist";
+import {Track} from "../domain/track";
 
 export interface IPlaylistEditor {
   addTrack(playlist: Playlist, track: Track): Promise<Playlist>;

@@ -1,10 +1,10 @@
-import { Playlist } from "../domain/playlist";
-import { Track } from "../domain/track";
-import { IPlaylistCreator } from "../usecase/creator";
-import { IPlaylistDeleter } from "../usecase/deleter";
-import { IPlaylistEditor } from "../usecase/editor";
-import { ISearcher } from "../usecase/searcher";
-import { IVerifier } from "../usecase/verifier";
+import {Playlist} from "../domain/playlist";
+import {Track} from "../domain/track";
+import {IPlaylistCreator} from "../usecase/creator";
+import {IPlaylistDeleter} from "../usecase/deleter";
+import {IPlaylistEditor} from "../usecase/editor";
+import {ISearcher} from "../usecase/searcher";
+import {IVerifier} from "../usecase/verifier";
 
 export interface IAPIClient {
   createPlaylist(name: string): Promise<Playlist>;

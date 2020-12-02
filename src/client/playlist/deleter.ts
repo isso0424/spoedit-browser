@@ -1,7 +1,7 @@
-import { Playlist } from "../../domain/playlist";
-import { IPlaylistDeleter } from "../../usecase/deleter";
-import { IRequester } from "../../usecase/requester";
-import { IVerifier } from "../../usecase/verifier";
+import {Playlist} from "../../domain/playlist";
+import {IPlaylistDeleter} from "../../usecase/deleter";
+import {IRequester} from "../../usecase/requester";
+import {IVerifier} from "../../usecase/verifier";
 
 const endpointTemplate = "/playlists/id/followers";
 

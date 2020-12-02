@@ -1,9 +1,9 @@
-import { Playlist } from "../../domain/playlist";
-import { Track } from "../../domain/track";
-import { IPlaylistCreator } from "../../usecase/creator";
-import { IRequester } from "../../usecase/requester";
-import { IVerifier } from "../../usecase/verifier";
-import { UserInfoGetter } from "../user/getter";
+import {Playlist} from "../../domain/playlist";
+import {Track} from "../../domain/track";
+import {IPlaylistCreator} from "../../usecase/creator";
+import {IRequester} from "../../usecase/requester";
+import {IVerifier} from "../../usecase/verifier";
+import {UserInfoGetter} from "../user/getter";
 
 const fetchPlaylistEndpoint = "/me/playlists";
 
@@ -14,6 +14,7 @@ export class PlaylistCreator implements IPlaylistCreator {
     this.requester = requester;
     this.verifier = verifier;
   }
+
   private requester: IRequester;
 
   private verifier: IVerifier;
@@ -22,8 +23,8 @@ export class PlaylistCreator implements IPlaylistCreator {
     const accessToken = await this.verifier.getAccessToken();
     const response = await this.requester.getData(
       fetchPlaylistEndpoint,
-      { limit: "50" },
-      { Authorization: "Bearer " + accessToken.token }
+      {limit: "50"},
+      {Authorization: "Bearer " + accessToken.token}
     );
 
     const items = response["items"] as Array<Record<string, unknown>>;
@@ -64,13 +65,9 @@ export class PlaylistCreator implements IPlaylistCreator {
         id: track["id"] as string,
         name: track["name"] as string,
         durationMs: track["duration_ms"] as number,
-        imageURL: ((track["album"] as Record<
-          string,
-          unknown
-        >["images"]) as Array<Record<string, unknown>>[0]["url"]) as string,
-        artistName: (track["artists"] as Array<
-          Record<string, unknown>
-        >[0]["name"]) as string,
+        imageURL: ((track["album"] as Record<string,
+          unknown>["images"]) as Array<Record<string, unknown>>[0]["url"]) as string,
+        artistName: (track["artists"] as Array<Record<string, unknown>>[0]["name"]) as string,
         uri: track["uri"] as string,
       });
     }
@@ -86,7 +83,7 @@ export class PlaylistCreator implements IPlaylistCreator {
     const response = await this.requester.post(
       endpoint,
       undefined,
-      { name },
+      {name},
       {
         Authorization: "Bearer " + accessToken.token,
         "Content-Type": "application/json",

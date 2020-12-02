@@ -1,5 +1,6 @@
 import axios from "axios";
-import { IRequester } from "../usecase/requester";
+import {IRequester} from "../usecase/requester";
+
 const baseURL = "https://api.spotify.com/v1";
 
 export class Requester implements IRequester {
@@ -11,7 +12,7 @@ export class Requester implements IRequester {
     const urlForEndpoint = baseURL + endpoint;
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
-    const response = await axios.get(requestURL, { headers });
+    const response = await axios.get(requestURL, {headers});
     if (response.status < 200 || response.status >= 300) {
       throw "Error occurred in get token with status code " + response.status;
     }
@@ -28,7 +29,7 @@ export class Requester implements IRequester {
     const urlForEndpoint = baseURL + endpoint;
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
-    const response = await axios.post(requestURL, body, { headers });
+    const response = await axios.post(requestURL, body, {headers});
     if (response.status < 200 || response.status >= 300) {
       throw "Error occurred in get token with status code " + response.status;
     }
@@ -45,7 +46,7 @@ export class Requester implements IRequester {
     const urlForEndpoint = baseURL + endpoint;
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
-    const response = await axios.put(requestURL, body, { headers });
+    const response = await axios.put(requestURL, body, {headers});
     if (response.status < 200 || response.status >= 300) {
       throw "Error occurred in get token with status code " + response.status;
     }
@@ -62,7 +63,7 @@ export class Requester implements IRequester {
     const urlForEndpoint = baseURL + endpoint;
     const requestURL = Requester.embedQueriesToURL(urlForEndpoint, queries);
 
-    const response = await axios.delete(requestURL, { headers, data: body });
+    const response = await axios.delete(requestURL, {headers, data: body});
     if (response.status < 200 || response.status >= 300) {
       throw "Error occurred in get token with status code " + response.status;
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./styles/App.scss"
 import {APIClient} from "../client/client";
 import {Requester} from "../client/requester";
 import {Verifier} from "../client/verifier";
@@ -7,7 +7,7 @@ import {PlaylistCreator} from "../client/playlist/creator";
 import {PlaylistDeleter} from "../client/playlist/deleter";
 import {PlaylistEditor} from "../client/playlist/editor";
 import {Searcher} from "../client/playlist/searcher";
-import {TopPage} from "./top_page";
+import {TopPage} from "./TopPage";
 
 const requester = new Requester();
 const verifier = new Verifier();

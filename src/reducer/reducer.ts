@@ -1,7 +1,7 @@
 import {Playlist} from "../domain/playlist";
 import {Track} from "../domain/track";
 
-type TabName = "playlists" | "searcher";
+export type TabName = "playlists" | "searcher";
 
 export interface State {
   playlists?: Array<Playlist>;
@@ -9,7 +9,7 @@ export interface State {
   currentTab: TabName;
 }
 
-type Action = updatePlaylists | selectTrack | clearSelected | unselectTrack | switchTabs;
+export type Action = updatePlaylists | selectTrack | clearSelected | unselectTrack | switchTabs;
 
 interface updatePlaylists {
   type: "updatePlaylists";

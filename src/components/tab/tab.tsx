@@ -5,12 +5,14 @@ import {IAPIClient} from "../../client/client";
 import {SearcherTab} from "./searcherTab";
 import "./tab.scss"
 import {Playlist} from "../../domain/playlist";
+import {Track} from "../../domain/track";
 
 interface Props {
   currentTab: TabName;
   client: IAPIClient;
   dispatch: (action: Action) => void;
   playlists?: Array<Playlist>;
+  selectedTracks?: Array<Track>;
 }
 
 export const Tab = (props: Props): JSX.Element => {

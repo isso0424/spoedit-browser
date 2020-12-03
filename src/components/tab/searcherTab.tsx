@@ -1,13 +1,13 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {useState} from "react";
 import {IAPIClient} from "../../client/client";
 import {Action} from "../../reducer/reducer";
 import {Track} from "../../domain/track";
-import {Button, Card, CardActions, CardContent, Grid, Icon, IconButton, Typography} from "@material-ui/core";
-import {TextFields} from "@material-ui/icons";
+import {Button, Card, CardActions, CardContent, Grid, Icon, IconButton, TextField, Typography} from "@material-ui/core";
 
 interface Props {
   client: IAPIClient;
   dispatch: (action: Action) => void;
+  selectedTracks: Array<Track>;
 }
 
 interface State {
@@ -18,6 +18,7 @@ interface State {
 
 export const SearcherTab = (props: Props): JSX.Element => {
   const [state, setState] = useState<State>({ tracks: [], loading: false, keyword: "" });
+  if (state.loading && state.tracks.length > 0) setState({...state, loading: false});
   return (
     <Grid
       container
@@ -32,14 +33,15 @@ export const SearcherTab = (props: Props): JSX.Element => {
         justify="center"
         alignItems="flex-start"
       >
-        <TextFields
+        <TextField
           onChange={
             (e) =>
-              setState({...state, keyword: (e as unknown as ChangeEvent<HTMLInputElement>).target.value})
+              setState({...state, keyword: e.target.value})
           }
+          classes={{root: "searchField"}}
         />
         <IconButton onClick={() => {
-          props.client.searchTrack(state.keyword).catch(tracks => setState({...state, loading: false, tracks }));
+          props.client.searchTrack(state.keyword).then(tracks => setState({...state, loading: false, tracks }));
           setState({...state, loading: true});
         }}>
           <Icon>search</Icon>
@@ -47,15 +49,15 @@ export const SearcherTab = (props: Props): JSX.Element => {
       </Grid>
       {
         state.loading ? <p>searching...</p> : state.tracks.map(track =>
-          <Card key={track.id}>
+          <Card key={track.id} classes={{root: ""}}>
             <CardContent>
               <Typography variant="h5" component="h4">{track.name}</Typography>
-              <Typography variant="h6" component="p">track counts: {playlist.tracks.length}</Typography>
+              <Typography variant="h6" component="p">Artist {track.artistName}</Typography>
             </CardContent>
             <CardActions>
               <Button
                 size="small"
-                onClick={() => props.dispatch({ type: "selectPlaylist", playlist })}
+                onClick={() => props.dispatch({ type: "selectTrack", track })}
               >Select</Button>
             </CardActions>
           </Card>

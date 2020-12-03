@@ -32,7 +32,7 @@ export class PlaylistCreator implements IPlaylistCreator {
     for (const rawPlaylist of items) {
       const tracksURL = (rawPlaylist["tracks"] as Record<string, unknown>)
         .href as string;
-      const tracks = await this.fetchTracks(tracksURL);
+      const tracks = await this.fetchTracks(tracksURL, accessToken.token);
       playlists.push({
         id: rawPlaylist["id"] as string,
         description: rawPlaylist["description"] as string,
@@ -45,15 +45,14 @@ export class PlaylistCreator implements IPlaylistCreator {
     return playlists;
   }
 
-  private async fetchTracks(url: string): Promise<Array<Track>> {
+  private async fetchTracks(url: string, accessToken: string): Promise<Array<Track>> {
     const requestEndpoint = url.replace("https://api.spotify.com/v1", "");
-    const accessToken = await this.verifier.getAccessToken();
 
     const response = await this.requester.getData(
       requestEndpoint,
       {},
       {
-        Authorization: "Bearer " + accessToken.token,
+        Authorization: "Bearer " + accessToken,
       }
     );
 

@@ -4,6 +4,7 @@ import {IAPIClient} from "../client/client";
 import {reducer} from "../reducer/reducer";
 import {TabBar} from "../components/tabBar/tabBar";
 import {Icon} from "@material-ui/core";
+import {Tab} from "../components/tab/tab";
 
 interface Props {
   client: IAPIClient;
@@ -11,9 +12,6 @@ interface Props {
 
 export const TopPage = (props: Props): JSX.Element => {
   const [state, dispatch] = React.useReducer(reducer, { currentTab: "playlists" },);
-  props.client.fetchPlaylist().then(playlists => {
-    dispatch({ type: "updatePlaylists", playlists });
-  });
 
   return (
     <div className="root">
@@ -31,7 +29,7 @@ export const TopPage = (props: Props): JSX.Element => {
         ]
       }
       />
-      {state.currentTab}
+      <Tab currentTab={state.currentTab} client={props.client} dispatch={dispatch} playlists={state.playlists}/>
     </div>
   );
 }

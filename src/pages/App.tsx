@@ -23,7 +23,6 @@ const client = new APIClient(
   deleter,
   searcher,
 );
-client.searchTrack("world.execute(me)").then(result => console.log(result));
 
 const App = (): JSX.Element => {
   return (

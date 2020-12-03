@@ -10,11 +10,15 @@ export interface State {
   currentTab: TabName;
 }
 
-export type Action = updatePlaylists | selectTrack | clearSelected | unselectTrack | switchTabs | selectPlaylist;
+export type Action = updatePlaylists | selectTrack | clearSelected | unselectTrack | switchTabs | selectPlaylist | resetPlaylists;
 
 interface updatePlaylists {
   type: "updatePlaylists";
   playlists: Array<Playlist>;
+}
+
+interface resetPlaylists {
+  type: "resetPlaylists";
 }
 
 interface selectTrack {
@@ -45,9 +49,10 @@ export const reducer = (state: State, action: Action): State => {
   const prevTracks = state.selectedTracks ?? [];
   switch (action.type) {
     case "updatePlaylists":
+      console.log(action.playlists);
       return {
         ...state,
-        playlists: action.playlists,
+        playlists: action.playlists.concat(),
       };
     case "selectTrack":
       prevTracks.push(action.track);
@@ -75,5 +80,10 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         selectedPlaylist: action.playlist,
       };
+    case "resetPlaylists":
+      return {
+        ...state,
+        playlists: undefined,
+      }
   }
 };

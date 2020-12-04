@@ -1,7 +1,7 @@
-import {Track} from "../../domain/track";
-import {IRequester} from "../../usecase/requester";
-import {ISearcher} from "../../usecase/searcher";
-import {IVerifier} from "../../usecase/verifier";
+import {Track} from "../../../domain/track";
+import {IRequester} from "../../../usecase/requester";
+import {ISearcher} from "../../../usecase/searcher";
+import {IVerifier} from "../../../usecase/verifier";
 
 const endpoint = "/search";
 

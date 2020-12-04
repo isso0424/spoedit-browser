@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {IAPIClient} from "../../client/client";
 import {Action} from "../../reducer/reducer";
 import {Track} from "../../domain/track";
 import {
@@ -14,6 +13,7 @@ import {
   Typography,
   useTheme, withStyles
 } from "@material-ui/core";
+import {IAPIClient} from "../../usecase/client";
 
 interface Props {
   client: IAPIClient;

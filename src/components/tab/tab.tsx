@@ -1,11 +1,11 @@
 import React from "react";
 import {Action, TabName} from "../../reducer/reducer";
 import {PlaylistsTab} from "./playlists";
-import {IAPIClient} from "../../client/client";
 import {SearcherTab} from "./searcherTab";
 import "./tab.scss"
 import {Playlist} from "../../domain/playlist";
 import {Track} from "../../domain/track";
+import {IAPIClient} from "../../usecase/client";
 
 interface Props {
   currentTab: TabName;

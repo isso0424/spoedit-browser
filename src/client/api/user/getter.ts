@@ -1,5 +1,5 @@
-import {IRequester} from "../../usecase/requester";
-import {IVerifier} from "../../usecase/verifier";
+import {IRequester} from "../../../usecase/requester";
+import {IVerifier} from "../../../usecase/verifier";
 
 const endPoint = "/me";
 

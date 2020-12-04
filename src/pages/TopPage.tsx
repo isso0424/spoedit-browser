@@ -1,10 +1,10 @@
 import React from "react";
 import "./styles/TopPage.scss"
-import {IAPIClient} from "../client/client";
 import {reducer} from "../reducer/reducer";
 import {TabBar} from "../components/tabBar/tabBar";
 import {Icon} from "@material-ui/core";
 import {Tab} from "../components/tab/tab";
+import {IAPIClient} from "../usecase/client";
 
 interface Props {
   client: IAPIClient;

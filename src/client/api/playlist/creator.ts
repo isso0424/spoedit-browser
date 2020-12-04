@@ -1,8 +1,8 @@
-import {Playlist} from "../../domain/playlist";
-import {Track} from "../../domain/track";
-import {IPlaylistCreator} from "../../usecase/creator";
-import {IRequester} from "../../usecase/requester";
-import {IVerifier} from "../../usecase/verifier";
+import {Playlist} from "../../../domain/playlist";
+import {Track} from "../../../domain/track";
+import {IPlaylistCreator} from "../../../usecase/creator";
+import {IRequester} from "../../../usecase/requester";
+import {IVerifier} from "../../../usecase/verifier";
 import {UserInfoGetter} from "../user/getter";
 
 const fetchPlaylistEndpoint = "/me/playlists";

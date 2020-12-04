@@ -1,8 +1,8 @@
-import {Playlist} from "../../domain/playlist";
-import {Track} from "../../domain/track";
-import {IPlaylistEditor} from "../../usecase/editor";
-import {IRequester} from "../../usecase/requester";
-import {IVerifier} from "../../usecase/verifier";
+import {Playlist} from "../../../domain/playlist";
+import {Track} from "../../../domain/track";
+import {IPlaylistEditor} from "../../../usecase/editor";
+import {IRequester} from "../../../usecase/requester";
+import {IVerifier} from "../../../usecase/verifier";
 
 const editPlaylistEndpoint = "/playlists/id";
 const editPlaylistItemEndpoint = "/playlists/id/tracks";

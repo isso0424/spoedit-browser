@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {IAPIClient} from "../../client/client";
 import {Action} from "../../reducer/reducer";
 import {Playlist} from "../../domain/playlist";
 import {Button, Card, CardActions, CardContent, Grid, Icon, IconButton, Typography} from "@material-ui/core";
+import {IAPIClient} from "../../usecase/client";
 
 interface Props {
   client: IAPIClient;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import dayjs from "dayjs";
-import {AccessToken} from "../domain/token";
-import {IVerifier} from "../usecase/verifier";
+import {AccessToken} from "../../domain/token";
+import {IVerifier} from "../../usecase/verifier";
 
 export class Verifier implements IVerifier {
   async getAccessToken(): Promise<AccessToken> {

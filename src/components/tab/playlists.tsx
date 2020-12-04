@@ -1,13 +1,77 @@
 import React, {useState} from "react";
 import {Action} from "../../reducer/reducer";
 import {Playlist} from "../../domain/playlist";
-import {Button, Card, CardActions, CardContent, Grid, Icon, IconButton, Typography} from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Grid,
+  Icon,
+  IconButton,
+  Typography, useTheme,
+  withStyles
+} from "@material-ui/core";
 import {IAPIClient} from "../../usecase/client";
 
 interface Props {
   client: IAPIClient;
   dispatch: (action: Action) => void;
   currentPlaylists?: Array<Playlist>;
+  selectedPlaylist?: Playlist;
+}
+
+interface PlaylistCardProps {
+  dispatch: (action: Action) => void;
+  playlist: Playlist;
+  isSelected: boolean;
+}
+
+const PlaylistCard = (props: PlaylistCardProps): JSX.Element => {
+  const theme = useTheme();
+
+  const SelectedCard = withStyles({
+    root: {
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.primary.contrastText
+    }
+  })(Card);
+  const SelectedButton = withStyles({
+    root: {
+      backgroundColor: theme.palette.background.default,
+      '&:hover': {
+        backgroundColor: theme.palette.background.default,
+      }
+    }
+  })(Button);
+  if (props.isSelected) {
+    return (<SelectedCard key={props.playlist.id}>
+      <CardContent>
+        <Typography variant="h5" component="h4">{props.playlist.name}</Typography>
+        <Typography variant="h6" component="p">track counts: {props.playlist.tracks.length}</Typography>
+      </CardContent>
+      <CardActions>
+        <SelectedButton
+          size="small"
+          onClick={() => props.dispatch({ type: "unselectPlaylist" })}
+        >Unselect</SelectedButton>
+      </CardActions>
+    </SelectedCard>);
+  }
+  return (
+    <Card key={props.playlist.id}>
+      <CardContent>
+        <Typography variant="h5" component="h4">{props.playlist.name}</Typography>
+        <Typography variant="h6" component="p">track counts: {props.playlist.tracks.length}</Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          size="small"
+          onClick={() => props.dispatch({ type: "selectPlaylist", playlist: props.playlist })}
+        >Select</Button>
+      </CardActions>
+    </Card>
+  );
 }
 
 export const PlaylistsTab = (props: Props): JSX.Element => {
@@ -39,18 +103,12 @@ export const PlaylistsTab = (props: Props): JSX.Element => {
         {
           props.currentPlaylists.map((playlist) => {
             return (
-              <Card key={playlist.id}>
-                <CardContent>
-                  <Typography variant="h5" component="h4">{playlist.name}</Typography>
-                  <Typography variant="h6" component="p">track counts: {playlist.tracks.length}</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    size="small"
-                    onClick={() => props.dispatch({ type: "selectPlaylist", playlist })}
-                  >Select</Button>
-                </CardActions>
-              </Card>
+              <PlaylistCard
+                key={playlist.id}
+                dispatch={props.dispatch}
+                playlist={playlist}
+                isSelected={playlist.id == props.selectedPlaylist?.id}
+              />
             );
           })
         }

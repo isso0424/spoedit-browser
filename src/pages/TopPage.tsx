@@ -29,7 +29,7 @@ export const TopPage = (props: Props): JSX.Element => {
         ]
       }
       />
-      <Tab currentTab={state.currentTab} client={props.client} dispatch={dispatch} playlists={state.playlists} selectedTracks={state.selectedTracks}/>
+      <Tab currentTab={state.currentTab} client={props.client} dispatch={dispatch} playlists={state.playlists} selectedTracks={state.selectedTracks} selectedPlaylist={state.selectedPlaylist}/>
     </div>
   );
 }

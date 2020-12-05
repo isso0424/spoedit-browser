@@ -2,8 +2,9 @@ import React from "react";
 import {IAPIClient} from "../../usecase/client";
 import {Playlist} from "../../domain/playlist";
 import {Action} from "../../reducer/reducer";
-import {Button, Card, CardActions, CardContent, Grid, Typography} from "@material-ui/core";
+import {Box, Button, Card, CardActions, CardContent, Grid, Typography} from "@material-ui/core";
 import {Track} from "../../domain/track";
+import "./tracksGrid.scss";
 
 interface TrackCardProps {
   client: IAPIClient;
@@ -21,7 +22,12 @@ interface TracksGridProps {
 const TrackCard = (props: TrackCardProps): JSX.Element => {
   console.log(props.track);
   return (
-    <Card key={props.track.id}>
+    <Card
+      key={props.track.id}
+      classes={{
+        root: "playlistDetailColumn"
+      }}
+    >
       <CardContent>
         <Typography variant="h5" component="h4">{props.track.name}</Typography>
         <Typography variant="h6" component="p">Artist {props.track.artistName}</Typography>
@@ -51,16 +57,12 @@ export const TracksGrid = (props: TracksGridProps): JSX.Element => {
       container
       direction="column"
       justify="flex-start"
-      alignItems="center"
+      alignItems="flex-start"
+      spacing={5}
     >
       {
         tracksList.map((tracks, index) => (
-          <Grid
-            container
-            direction="row"
-            justify="space-evenly"
-            alignItems="center"
-            key={index}
+          <div className="playlistDetailCard" key={index}
           >{
             tracks.map((track, index) => (
               <TrackCard
@@ -71,7 +73,7 @@ export const TracksGrid = (props: TracksGridProps): JSX.Element => {
                 key={index}
               />
             ))
-          }</Grid>
+          }</div>
         ))
       }
     </Grid>

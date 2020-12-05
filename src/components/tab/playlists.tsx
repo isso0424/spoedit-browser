@@ -9,7 +9,8 @@ import {
   Grid,
   Icon,
   IconButton,
-  Typography, useTheme,
+  Typography,
+  useTheme,
   withStyles
 } from "@material-ui/core";
 import {IAPIClient} from "../../usecase/client";
@@ -53,7 +54,7 @@ const PlaylistCard = (props: PlaylistCardProps): JSX.Element => {
       <CardActions>
         <SelectedButton
           size="small"
-          onClick={() => props.dispatch({ type: "unselectPlaylist" })}
+          onClick={() => props.dispatch({type: "unselectPlaylist"})}
         >Unselect</SelectedButton>
       </CardActions>
     </SelectedCard>);
@@ -67,7 +68,7 @@ const PlaylistCard = (props: PlaylistCardProps): JSX.Element => {
       <CardActions>
         <Button
           size="small"
-          onClick={() => props.dispatch({ type: "selectPlaylist", playlist: props.playlist })}
+          onClick={() => props.dispatch({type: "selectPlaylist", playlist: props.playlist})}
         >Select</Button>
       </CardActions>
     </Card>
@@ -79,7 +80,7 @@ export const PlaylistsTab = (props: Props): JSX.Element => {
   if (props.currentPlaylists == null) {
     if (!state.loading) {
       props.client.fetchPlaylist().then(playlists => {
-        props.dispatch({ type: "updatePlaylists", playlists });
+        props.dispatch({type: "updatePlaylists", playlists});
       });
       setState({loading: true});
     }
@@ -96,7 +97,7 @@ export const PlaylistsTab = (props: Props): JSX.Element => {
         spacing={3}
       >
         <IconButton onClick={() => {
-          props.dispatch({ type: "resetPlaylists" })
+          props.dispatch({type: "resetPlaylists"})
         }}>
           <Icon>refresh</Icon>
         </IconButton>

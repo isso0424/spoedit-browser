@@ -2,7 +2,7 @@ import {IPlaylistEditor} from "../../usecase/editor";
 import {Playlist} from "../../domain/playlist";
 import {Track} from "../../domain/track";
 
-export class MockPlaylistEditor implements IPlaylistEditor{
+export class MockPlaylistEditor implements IPlaylistEditor {
   async addTrack(playlist: Playlist, track: Track): Promise<Playlist> {
     playlist.tracks.push(track);
 

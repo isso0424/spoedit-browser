@@ -11,7 +11,8 @@ import {
   IconButton,
   TextField,
   Typography,
-  useTheme, withStyles
+  useTheme,
+  withStyles
 } from "@material-ui/core";
 import {IAPIClient} from "../../usecase/client";
 
@@ -61,29 +62,29 @@ const TrackCard = (props: TrackCardProps): JSX.Element => {
         <CardActions>
           <SelectedButton
             size="small"
-            onClick={() => props.dispatch({ type: "unselectTrack", track: props.track })}
+            onClick={() => props.dispatch({type: "unselectTrack", track: props.track})}
           >Unselect</SelectedButton>
         </CardActions>
       </SelectedCard>
     );
   return (
-  <Card key={props.track.id}>
-    <CardContent>
-      <Typography variant="h5" component="h4">{props.track.name}</Typography>
-      <Typography variant="h6" component="p">Artist {props.track.artistName}</Typography>
-    </CardContent>
-    <CardActions>
-      <Button
-        size="small"
-        onClick={() => props.dispatch({ type: "selectTrack", track: props.track })}
-      >Select</Button>
-    </CardActions>
-  </Card>
+    <Card key={props.track.id}>
+      <CardContent>
+        <Typography variant="h5" component="h4">{props.track.name}</Typography>
+        <Typography variant="h6" component="p">Artist {props.track.artistName}</Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          size="small"
+          onClick={() => props.dispatch({type: "selectTrack", track: props.track})}
+        >Select</Button>
+      </CardActions>
+    </Card>
   );
 };
 
 export const SearcherTab = (props: Props): JSX.Element => {
-  const [state, setState] = useState<State>({ tracks: [], loading: false, keyword: "" });
+  const [state, setState] = useState<State>({tracks: [], loading: false, keyword: ""});
   if (state.loading && state.tracks.length > 0) setState({...state, loading: false});
   return (
     <Grid
@@ -107,7 +108,7 @@ export const SearcherTab = (props: Props): JSX.Element => {
           classes={{root: "searchField"}}
         />
         <IconButton onClick={() => {
-          props.client.searchTrack(state.keyword).then(tracks => setState({...state, loading: false, tracks }));
+          props.client.searchTrack(state.keyword).then(tracks => setState({...state, loading: false, tracks}));
           setState({...state, loading: true});
         }}>
           <Icon>search</Icon>

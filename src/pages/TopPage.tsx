@@ -12,11 +12,11 @@ interface Props {
 }
 
 export const TopPage = (props: Props): JSX.Element => {
-  const [state, dispatch] = React.useReducer(reducer, { currentTab: "playlists" },);
+  const [state, dispatch] = React.useReducer(reducer, {currentTab: "playlists"},);
 
   return (
     <div className="root">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
       <TabBar dispatch={dispatch} buttons={
         [
           {
@@ -30,8 +30,9 @@ export const TopPage = (props: Props): JSX.Element => {
         ]
       }
       />
-      <Tab currentTab={state.currentTab} client={props.client} dispatch={dispatch} playlists={state.playlists} selectedTracks={state.selectedTracks} selectedPlaylist={state.selectedPlaylist}/>
-      <PlaylistDetail client={props.client} playlist={state.selectedPlaylist} dispatch={dispatch} />
+      <Tab currentTab={state.currentTab} client={props.client} dispatch={dispatch} playlists={state.playlists}
+           selectedTracks={state.selectedTracks} selectedPlaylist={state.selectedPlaylist}/>
+      <PlaylistDetail client={props.client} playlist={state.selectedPlaylist} dispatch={dispatch}/>
     </div>
   );
 }

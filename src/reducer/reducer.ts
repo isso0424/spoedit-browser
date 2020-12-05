@@ -10,7 +10,16 @@ export interface State {
   currentTab: TabName;
 }
 
-export type Action = updatePlaylists | selectTrack | clearSelected | unselectTrack | switchTabs | selectPlaylist | resetPlaylists | unselectPlaylist | deleteTrack;
+export type Action =
+  updatePlaylists
+  | selectTrack
+  | clearSelected
+  | unselectTrack
+  | switchTabs
+  | selectPlaylist
+  | resetPlaylists
+  | unselectPlaylist
+  | deleteTrack;
 
 interface updatePlaylists {
   type: "updatePlaylists";

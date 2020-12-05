@@ -8,7 +8,6 @@ import {PlaylistDeleter} from "../client/api/playlist/deleter";
 import {PlaylistEditor} from "../client/api/playlist/editor";
 import {Searcher} from "../client/api/playlist/searcher";
 import {TopPage} from "./TopPage";
-import {mockClient} from "../client/mock/client";
 
 const requester = new Requester();
 const verifier = new Verifier();

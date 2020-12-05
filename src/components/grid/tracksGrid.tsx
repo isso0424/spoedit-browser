@@ -2,7 +2,7 @@ import React from "react";
 import {IAPIClient} from "../../usecase/client";
 import {Playlist} from "../../domain/playlist";
 import {Action} from "../../reducer/reducer";
-import {Box, Button, Card, CardActions, CardContent, Grid, Typography} from "@material-ui/core";
+import {Button, Card, CardActions, CardContent, Grid, Typography} from "@material-ui/core";
 import {Track} from "../../domain/track";
 import "./tracksGrid.scss";
 
@@ -37,7 +37,7 @@ const TrackCard = (props: TrackCardProps): JSX.Element => {
           size="small"
           onClick={() => {
             props.client.deleteTrack(props.playlist, props.track).then(() => {
-              props.dispatch({ type: "deleteTrack", track: props.track });
+              props.dispatch({type: "deleteTrack", track: props.track});
             });
           }}
         >Delete</Button>

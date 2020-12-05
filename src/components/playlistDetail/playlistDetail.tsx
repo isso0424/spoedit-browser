@@ -18,7 +18,7 @@ export const PlaylistDetail = (props: Props): JSX.Element => {
         props.playlist == null ?
           <h3>First, you have to select a playlist</h3> :
           <TracksGrid client={props.client} playlist={props.playlist} dispatch={props.dispatch}
-        />
+          />
       }
     </div>
   );

@@ -7,8 +7,7 @@ export class MockPlaylistCreator implements IPlaylistCreator {
       id: "created",
       name,
       description: "new playlist",
-      tracks: [
-      ],
+      tracks: [],
       uri: "this is uri",
     };
   }

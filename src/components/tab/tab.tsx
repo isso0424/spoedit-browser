@@ -20,7 +20,8 @@ export const Tab = (props: Props): JSX.Element => {
   let tab: JSX.Element;
   switch (props.currentTab) {
     case "playlists":
-      tab = <PlaylistsTab client={props.client} dispatch={props.dispatch} currentPlaylists={props.playlists} selectedPlaylist={props.selectedPlaylist}/>;
+      tab = <PlaylistsTab client={props.client} dispatch={props.dispatch} currentPlaylists={props.playlists}
+                          selectedPlaylist={props.selectedPlaylist}/>;
       break;
     case "searcher":
       tab = <SearcherTab client={props.client} dispatch={props.dispatch} selectedTracks={props.selectedTracks}/>;

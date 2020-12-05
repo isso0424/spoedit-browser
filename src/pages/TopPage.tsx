@@ -5,6 +5,7 @@ import {TabBar} from "../components/tabBar/tabBar";
 import {Icon} from "@material-ui/core";
 import {Tab} from "../components/tab/tab";
 import {IAPIClient} from "../usecase/client";
+import {PlaylistDetail} from "../components/playlistDetail/playlistDetail";
 
 interface Props {
   client: IAPIClient;
@@ -30,6 +31,7 @@ export const TopPage = (props: Props): JSX.Element => {
       }
       />
       <Tab currentTab={state.currentTab} client={props.client} dispatch={dispatch} playlists={state.playlists} selectedTracks={state.selectedTracks} selectedPlaylist={state.selectedPlaylist}/>
+      <PlaylistDetail client={props.client} playlist={state.selectedPlaylist} dispatch={dispatch} />
     </div>
   );
 }

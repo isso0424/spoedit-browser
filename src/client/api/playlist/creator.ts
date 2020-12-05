@@ -66,7 +66,7 @@ export class PlaylistCreator implements IPlaylistCreator {
         durationMs: track["duration_ms"] as number,
         imageURL: ((track["album"] as Record<string,
           unknown>["images"]) as Array<Record<string, unknown>>[0]["url"]) as string,
-        artistName: (track["artists"] as Array<Record<string, unknown>>[0]["name"]) as string,
+        artistName: (track["artists"] as Array<Record<string, unknown>>)[0]["name"] as string,
         uri: track["uri"] as string,
       });
     }

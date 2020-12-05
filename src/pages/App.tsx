@@ -28,7 +28,7 @@ const client = new APIClient(
 const App = (): JSX.Element => {
   return (
     <div className="App">
-      <TopPage client={mockClient}/>
+      <TopPage client={client}/>
     </div>
   );
 }

@@ -19,6 +19,7 @@ interface TracksGridProps {
 }
 
 const TrackCard = (props: TrackCardProps): JSX.Element => {
+  console.log(props.track);
   return (
     <Card key={props.track.id}>
       <CardContent>
@@ -33,7 +34,7 @@ const TrackCard = (props: TrackCardProps): JSX.Element => {
               props.dispatch({ type: "deleteTrack", track: props.track });
             });
           }}
-        >Select</Button>
+        >Delete</Button>
       </CardActions>
     </Card>
   );

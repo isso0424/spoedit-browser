@@ -1,4 +1,6 @@
 div.root {
   height: 100%;
   width: 100%;
+  display: grid;
+  grid-template-columns: 52px 25% 1fr;
 }

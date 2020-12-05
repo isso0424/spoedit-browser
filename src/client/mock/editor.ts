@@ -3,8 +3,8 @@ import {Playlist} from "../../domain/playlist";
 import {Track} from "../../domain/track";
 
 export class MockPlaylistEditor implements IPlaylistEditor {
-  async addTrack(playlist: Playlist, track: Track): Promise<Playlist> {
-    playlist.tracks.push(track);
+  async addTrack(playlist: Playlist, track: Array<Track>): Promise<Playlist> {
+    track.forEach(t => playlist.tracks.push(t));
 
     return playlist;
   }

@@ -39,7 +39,7 @@ export class APIClient implements IAPIClient {
     return this.deleter.deletePlaylist(playlist);
   }
 
-  async addTrack(playlist: Playlist, track: Track): Promise<Playlist> {
+  async addTrack(playlist: Playlist, track: Array<Track>): Promise<Playlist> {
     return this.editor.addTrack(playlist, track);
   }
 

@@ -24,7 +24,7 @@ export const Tab = (props: Props): JSX.Element => {
                           selectedPlaylist={props.selectedPlaylist}/>;
       break;
     case "searcher":
-      tab = <SearcherTab client={props.client} dispatch={props.dispatch} selectedTracks={props.selectedTracks}/>;
+      tab = <SearcherTab client={props.client} dispatch={props.dispatch} selectedTracks={props.selectedTracks} playlists={props.playlists} selectedPlaylist={props.selectedPlaylist}/>;
       break;
   }
   return <div className="tabRoot">{tab}</div>;

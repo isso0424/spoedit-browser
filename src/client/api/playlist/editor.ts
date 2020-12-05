@@ -17,19 +17,19 @@ export class PlaylistEditor implements IPlaylistEditor {
 
   private verifier: IVerifier;
 
-  async addTrack(playlist: Playlist, track: Track): Promise<Playlist> {
+  async addTrack(playlist: Playlist, track: Array<Track>): Promise<Playlist> {
     const accessToken = await this.verifier.getAccessToken();
     const endpoint = editPlaylistItemEndpoint.replace("id", playlist.id);
     await this.requester.post(
       endpoint,
       undefined,
-      {uris: [track.uri]},
+      {uris: track.map(track => track.uri)},
       {
         Authorization: "Bearer " + accessToken.token,
         "Content-Type": "application/json",
       }
     );
-    playlist.tracks.push(track);
+    track.forEach(track => playlist.tracks.push(track));
 
     return playlist;
   }

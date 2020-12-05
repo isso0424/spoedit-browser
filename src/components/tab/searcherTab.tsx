@@ -15,11 +15,14 @@ import {
   withStyles
 } from "@material-ui/core";
 import {IAPIClient} from "../../usecase/client";
+import {Playlist} from "../../domain/playlist";
 
 interface Props {
   client: IAPIClient;
   dispatch: (action: Action) => void;
   selectedTracks?: Array<Track>;
+  selectedPlaylist?: Playlist;
+  playlists?: Array<Playlist>
 }
 
 interface State {
@@ -112,6 +115,21 @@ export const SearcherTab = (props: Props): JSX.Element => {
           setState({...state, loading: true});
         }}>
           <Icon>search</Icon>
+        </IconButton>
+        <IconButton onClick={() => {
+          if (props.selectedPlaylist == null) return;
+          if (props.selectedTracks == null) return;
+          props.client.addTrack(props.selectedPlaylist, props.selectedTracks).then(playlist => {
+            if (props.playlists == null) return;
+            const playlistIndex = props.playlists.findIndex(p => p.id == playlist.id);
+            const newPlaylist = props.playlists;
+            newPlaylist[playlistIndex] = playlist;
+            console.log(props.selectedTracks);
+            props.dispatch({ type: "updatePlaylists", playlists: newPlaylist });
+          });
+          props.dispatch({ type: "clearSelected" });
+        }}>
+          <Icon>add</Icon>
         </IconButton>
       </Grid>
       {

@@ -82,7 +82,7 @@ export const reducer = (state: State, action: Action): State => {
     case "clearSelected":
       return {
         ...state,
-        selectedTracks: undefined,
+        selectedTracks: [],
       };
     case "unselectTrack":
       return {

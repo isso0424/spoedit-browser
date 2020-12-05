@@ -8,7 +8,7 @@ export interface IAPIClient {
 
   deletePlaylist(playlist: Playlist): Promise<Playlist>;
 
-  addTrack(playlist: Playlist, track: Track): Promise<Playlist>;
+  addTrack(playlist: Playlist, track: Array<Track>): Promise<Playlist>;
 
   deleteTrack(playlist: Playlist, track: Track): Promise<Playlist>;
 

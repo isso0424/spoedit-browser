@@ -8,6 +8,11 @@ The playlist editor for spotify.
 4. Execute `yarn` and `yarn start`.
 5. You can use this application!!!
 
-## Requested applications
+## Requested
 - yarn
 - go
+
+## Contact
+Twitter: [@kousou4129](https://twitter.com/kousou4129)  
+Discord: isso0424\#4342  
+GitHub: isso0424

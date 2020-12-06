@@ -36,12 +36,10 @@ const SearcherTrackCard = (props: TrackCardProps): JSX.Element => {
   return props.isSelected ? <SelectedTrackCard track={props.track} dispatch={props.dispatch} /> : (
     <TrackCard
       message="Select"
-      dispatch={props.dispatch}
-      track={props.track}
-      action={{
-        type: "selectTrack",
-        track: props.track
+      onClickEvent={() => {
+        props.dispatch({ type: "selectTrack", track: props.track });
       }}
+      track={props.track}
     />
   );
 };

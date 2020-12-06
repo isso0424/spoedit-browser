@@ -1,13 +1,11 @@
 import React from "react";
 import {Button, Card, CardActions, CardContent, Typography} from "@material-ui/core";
-import {Action} from "../../../reducer/reducer";
 import {Track} from "../../../domain/track";
 
 interface Props {
   message: string;
-  dispatch: (action: Action) => void;
+  onClickEvent: () => void;
   track: Track;
-  action: Action;
 }
 
 export const TrackCard = (props: Props): JSX.Element => {
@@ -20,7 +18,7 @@ export const TrackCard = (props: Props): JSX.Element => {
       <CardActions>
         <Button
           size="small"
-          onClick={() => props.dispatch(props.action)}
+          onClick={props.onClickEvent}
         >{props.message}</Button>
       </CardActions>
     </Card>

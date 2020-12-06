@@ -26,6 +26,10 @@ export const TopPage = (props: Props): JSX.Element => {
           {
             icon: (<Icon>search</Icon>),
             switchingTabName: "searcher",
+          },
+          {
+            icon: (<Icon>storage</Icon>),
+            switchingTabName: "selectedTracks",
           }
         ]
       }

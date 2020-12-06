@@ -1,7 +1,7 @@
 import {Playlist} from "../domain/playlist";
 import {Track} from "../domain/track";
 
-export type TabName = "playlists" | "searcher";
+export type TabName = "playlists" | "searcher" | "selectedTracks";
 
 export interface State {
   playlists?: Array<Playlist>;
@@ -114,7 +114,10 @@ export const reducer = (state: State, action: Action): State => {
       newTracks = state.selectedPlaylist.tracks.filter(t => action.track.id != t.id);
       return {
         ...state,
-        selectedTracks: newTracks,
+        selectedPlaylist: {
+          ...state.selectedPlaylist,
+          tracks: newTracks,
+        },
       }
   }
 };
